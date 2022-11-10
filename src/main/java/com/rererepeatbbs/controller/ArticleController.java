@@ -69,6 +69,21 @@ public class ArticleController {
         }
     }
 
+    @GetMapping("/{id}/edit")
+    public String updateArticlePage(@PathVariable Long id, Model model){
+        Optional<Article> article = articleRepository.findById(id);
+        if (article.isPresent()) {
+            model.addAttribute("article", article.get());
+            return "article/edit";
+        }else{
+            return "redirect:/articles/list";
+        }
+    }
 
+    @PostMapping("/{id}/edit")
+    public String updateArticle(ArticleDto articleDto, Model model){
+        Article article = articleRepository.save(articleDto.toEntity());
+        return "redirect:/articles/" + article.getId();
+    }
 
 }
