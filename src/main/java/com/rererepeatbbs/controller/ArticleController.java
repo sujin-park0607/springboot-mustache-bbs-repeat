@@ -44,5 +44,18 @@ public class ArticleController {
         }
     }
 
+    @GetMapping("/list")
+    public String articleList(Model model){
+        List<Article> articleList = articleRepository.findAll();
+        model.addAttribute("articles", articleList);
+        return "article/list";
+    }
+
+    @GetMapping("/")
+    public String index(){
+        return "redirect:/articles/list";
+    }
+
+
 
 }
