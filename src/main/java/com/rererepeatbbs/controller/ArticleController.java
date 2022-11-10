@@ -56,6 +56,19 @@ public class ArticleController {
         return "redirect:/articles/list";
     }
 
+    @GetMapping("/{id}/delete")
+    public String deleteArticle(@PathVariable Long id){
+        articleRepository.deleteById(id);
+        Optional<Article> article = articleRepository.findById(id);
+        if (article.isPresent()) {
+            log.info("삭제 되지 않았습니다.");
+            return "redirect:./";
+        }else{
+            log.info("{} 삭제되었습니다.", id);
+            return "redirect:/articles/list";
+        }
+    }
+
 
 
 }
