@@ -33,4 +33,16 @@ public class ArticleController {
         return "redirect:/articles/" + article.getId();
     }
 
+    @GetMapping("/{id}")
+    public String selectById(@PathVariable Long id, Model model){
+        Optional<Article> article = articleRepository.findById(id);
+        if (article.isPresent()) {
+            model.addAttribute("article", article.get());
+            return"article/show";
+        }else{
+            return "article/error";
+        }
+    }
+
+
 }
