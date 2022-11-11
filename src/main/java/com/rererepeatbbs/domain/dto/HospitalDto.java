@@ -1,5 +1,6 @@
 package com.rererepeatbbs.domain.dto;
 
+import com.rererepeatbbs.domain.entity.Hospital;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,22 +13,24 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class HospitalDto {
 
-    private int id;
+    private Integer id;
     private String openServiceName;
-    private int openLocalGovernmentCode;
+    private Integer openLocalGovernmentCode;
     private String managementNumber;
     private LocalDateTime licenseDate;
-    private int businessStatus;
-    private int businessStatusCode;
+    private Integer businessStatus;
+    private Integer businessStatusCode;
     private String phone;
     private String fullAddress;
     private String roadNameAddress;
     private String hospitalName;
     private String businessTypeName;
-    private int healthcareProviderCount;
-    private int patientRoomCount;
-    private int totalNumberOfBeds;
-    private float totalAreaSize;
+    private Integer healthcareProviderCount;
+    private Integer patientRoomCount;
+    private Integer totalNumberOfBeds;
+    private Float totalAreaSize;
+
+
 
 
 }
