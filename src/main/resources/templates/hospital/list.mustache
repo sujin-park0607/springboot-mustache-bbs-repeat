@@ -1,0 +1,35 @@
+{{> layouts/header}}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">hospital_name</th>
+        <th scope="col">business_type_name</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    {{#hospitals}}
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/articles/{{id}}">{{hospitalName}}</a></td>
+            <td>{{businessTypeName}}</td>
+        </tr>
+    {{/hospitals}}
+    </tbody>
+</table>
+<div class="pagination justify-content-center">
+    {{#hasPrev}}
+        <a href="?page={{previous}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill"> < </a>
+    {{/hasPrev}}
+    {{^hasPrev}}
+        <a href="?page={{previous}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill disabled"> < </a>
+    {{/hasPrev}}
+
+    {{#hasNext}}
+        <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-right-square-fill"> > </a>
+    {{/hasNext}}
+    {{^hasNext}}
+        <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-right-square-fill disabled"> > </a>
+    {{/hasNext}}
+</div>
+{{>layouts/footer}}
