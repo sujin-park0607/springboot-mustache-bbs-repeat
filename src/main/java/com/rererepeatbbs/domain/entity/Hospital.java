@@ -5,29 +5,63 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+@Entity
 @Getter
+@Table(name = "nation_wide_hospitals")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Hospital {
 
-    private int id;
+    @Id
+    private Integer id;
+
+    @Column(name = "open_service_name")
     private String openServiceName;
-    private int openLocalGovernmentCode;
+
+    @Column(name = "open_local_government_code")
+    private Integer openLocalGovernmentCode;
+
+    @Column(name = "management_number")
     private String managementNumber;
+
+    @Column(name = "license_date")
     private LocalDateTime licenseDate;
-    private int businessStatus;
-    private int businessStatusCode;
+
+    @Column(name = "business_status")
+    private Integer businessStatus;
+
+    @Column(name = "business_status_code")
+    private Integer businessStatusCode;
+
     private String phone;
+
+    @Column(name = "full_address")
     private String fullAddress;
+
+    @Column(name = "road_name_address")
     private String roadNameAddress;
+
+    @Column(name = "hospital_name")
     private String hospitalName;
+
+    @Column(name = "business_type_name")
     private String businessTypeName;
-    private int healthcareProviderCount;
-    private int patientRoomCount;
-    private int totalNumberOfBeds;
-    private float totalAreaSize;
 
+    @Column(name = "healthcare_provider_count")
+    private Integer healthcareProviderCount;
 
+    @Column(name = "patient_room_count")
+    private Integer patientRoomCount;
+
+    @Column(name = "total_number_of_beds")
+    private Integer totalNumberOfBeds;
+
+    @Column(name = "total_area_size")
+    private Float totalAreaSize;
 }
