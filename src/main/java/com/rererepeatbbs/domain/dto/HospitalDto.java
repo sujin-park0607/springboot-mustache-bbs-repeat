@@ -1,6 +1,5 @@
 package com.rererepeatbbs.domain.dto;
 
-import com.rererepeatbbs.domain.entity.Hospital;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +28,6 @@ public class HospitalDto {
     private Integer patientRoomCount;
     private Integer totalNumberOfBeds;
     private Float totalAreaSize;
-
-
 
 
 }
