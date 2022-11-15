@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
-    List<Hospital> findByBusinessTypeNameIn(List<String> businessTypes);
+    /*List<Hospital> findByBusinessTypeNameIn(List<String> businessTypes);
 
     List<Hospital> findByFullAddressOrBusinessTypeName(String fullAddress, String businessTypeName);
 
@@ -18,5 +18,5 @@ public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
 
     List<Hospital> findByTotalNumberOfBedsBetween(int num1, int numb2);
 
-    List<Hospital> findByPatientRoomCountBetweenOrderByPatientRoomCountDesc(int num1, int numb2);
+    List<Hospital> findByPatientRoomCountBetweenOrderByPatientRoomCountDesc(int num1, int numb2);*/
 }

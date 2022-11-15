@@ -1,5 +1,6 @@
 package com.rererepeatbbs.domain.entity;
 
+import com.rererepeatbbs.domain.dto.HospitalResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,11 +15,22 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Table(name = "nation_wide_hospitals")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Hospital {
 
     @Id
+    private Integer id;
+
+    @Column(name = "road_name_address")
+    private String roadNameAddress;
+
+    @Column(name = "hospital_name")
+    private String hospitalName;
+    private Integer patientRoomCount;
+    private Integer totalNumberOfBeds;
+    private String businessTypeName;
+    private Float totalAreaSize;
+
+    /*@Id
     private Integer id;
 
     @Column(name = "open_service_name")
@@ -63,5 +75,14 @@ public class Hospital {
     private Integer totalNumberOfBeds;
 
     @Column(name = "total_area_size")
-    private Float totalAreaSize;
+    private Float totalAreaSize;*/
+
+    public static HospitalResponse of(Hospital hospital) {
+        return new HospitalResponse(hospital.getId(),
+                hospital.getRoadNameAddress(), hospital.getHospitalName(),
+                hospital.getPatientRoomCount(), hospital.getTotalNumberOfBeds(), hospital.getBusinessTypeName(),
+                hospital.getTotalAreaSize());
+    }
+
+
 }
