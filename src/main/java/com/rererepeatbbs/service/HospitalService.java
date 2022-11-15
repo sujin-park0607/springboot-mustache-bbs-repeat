@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class HospitalService {
     public final HospitalRepository hospitalRepository;
@@ -18,5 +20,9 @@ public class HospitalService {
     @Transactional(readOnly = true)
     public Page<Hospital> pageList(Pageable pageable) {
         return hospitalRepository.findAll(pageable);
+    }
+
+    public Optional<Hospital> showHospitalInfo(Integer id) {
+        return hospitalRepository.findById(id);
     }
 }
