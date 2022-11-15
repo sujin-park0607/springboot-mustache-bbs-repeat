@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class HospitalRepositoryTest {
 
-    @Autowired
+    /*@Autowired
     HospitalRepository hospitalRepository;
 
     @Test
@@ -89,5 +89,5 @@ class HospitalRepositoryTest {
     void findByPatientRoomCountBetweenOrderByPatientRoomCountDesc() {
         List<Hospital> hospitals = hospitalRepository.findByTotalNumberOfBedsBetween(10, 19);
         printHospitalNameAndAddress(hospitals);
-    }
+    }*/
 }
