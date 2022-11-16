@@ -1,5 +1,9 @@
 package com.rererepeatbbs.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rererepeatbbs.domain.dto.ArticleAddRequest;
+import com.rererepeatbbs.domain.dto.ArticleAddResponse;
 import com.rererepeatbbs.domain.dto.ArticleResponse;
 import com.rererepeatbbs.domain.dto.HospitalResponse;
 import com.rererepeatbbs.service.ArticleService;
@@ -8,12 +12,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -23,6 +30,9 @@ class ArticleRestControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @MockBean
     ArticleService articleService;
@@ -54,4 +64,22 @@ class ArticleRestControllerTest {
         verify(articleService).getArticleInfo(articleId); // getHospital()메소드의 호출이 있었는지 확인
     }
 
+    @Test
+    @DisplayName("글 등록이 잘 되는지")
+    void add() throws Exception {
+        ArticleAddRequest dto = new ArticleAddRequest("gg", "gg");
+
+        given(articleService.addArticle(any())).willReturn(new ArticleAddResponse(2L, dto.getTitle(), dto.getContent()));
+        //objectMapper
+        String url = "/api/v1/articles/add";
+        mockMvc.perform(post(url)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsBytes(new ArticleAddRequest("gg", "gg")))
+                ).andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.title").exists())
+                .andExpect(jsonPath("$.title").value("ggg"))
+                .andExpect(jsonPath("$.content").exists())
+                .andDo(print());
+    }
 }
