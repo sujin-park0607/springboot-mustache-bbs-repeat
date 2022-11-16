@@ -1,5 +1,7 @@
 package com.rererepeatbbs.service;
 
+import com.rererepeatbbs.domain.dto.ArticleAddRequest;
+import com.rererepeatbbs.domain.dto.ArticleAddResponse;
 import com.rererepeatbbs.domain.dto.ArticleResponse;
 import com.rererepeatbbs.domain.entity.Article;
 import com.rererepeatbbs.repository.ArticleRepository;
@@ -25,6 +27,12 @@ public class ArticleService {
         }
 
         return null;
+    }
+
+    public ArticleAddResponse addArticle(ArticleAddRequest dto) {
+        Article article = dto.toEntity();
+        Article savedArticle = articleRepository.save(article);
+        return new ArticleAddResponse(savedArticle.getId(), savedArticle.getTitle(), savedArticle.getContent());
     }
 
 
