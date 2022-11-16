@@ -1,0 +1,57 @@
+package com.rererepeatbbs.controller;
+
+import com.rererepeatbbs.domain.dto.ArticleResponse;
+import com.rererepeatbbs.domain.dto.HospitalResponse;
+import com.rererepeatbbs.service.ArticleService;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(ArticleRestController.class)
+class ArticleRestControllerTest {
+
+    @Autowired
+    MockMvc mockMvc;
+
+    @MockBean
+    ArticleService articleService;
+
+    @Test
+    @DisplayName("Json형태로 Response가 잘 오는지")
+        // 비즈니스 로직(Service를 검증하지 않음) Controller만 검증
+    void jsonResponse() throws Exception {
+        ArticleResponse articleResponse = ArticleResponse.builder()
+                .id(1L)
+                .title("gg")
+                .content("gg")
+                .build();
+        given(articleService.getArticleInfo(1L))
+                .willReturn(articleResponse);
+
+        Long articleId = 1L;
+
+        // 앞에서 Autowired한 mockMvc
+        String url = String.format("/api/v1/articles/%d", articleId);
+        mockMvc.perform(get(url))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").exists()) // $는 루트 안에 hospitalName이 있어야함
+                .andExpect(jsonPath("$.title").value("gg"))
+                .andExpect(jsonPath("$.content").exists())
+                .andExpect(jsonPath("$.content").value("gg"))
+                .andDo(print()); // http request, response내역을 출력해라.
+
+        verify(articleService).getArticleInfo(articleId); // getHospital()메소드의 호출이 있었는지 확인
+    }
+
+}
