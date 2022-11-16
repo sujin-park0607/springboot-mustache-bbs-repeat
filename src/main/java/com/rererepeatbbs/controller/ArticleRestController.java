@@ -1,15 +1,14 @@
 package com.rererepeatbbs.controller;
 
+import com.rererepeatbbs.domain.dto.ArticleAddRequest;
+import com.rererepeatbbs.domain.dto.ArticleAddResponse;
 import com.rererepeatbbs.domain.dto.ArticleResponse;
 import com.rererepeatbbs.service.ArticleService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/v1/articles")
-@Controller
+@RestController
 public class ArticleRestController {
 
     private final ArticleService articleService;
@@ -24,4 +23,9 @@ public class ArticleRestController {
         return ResponseEntity.ok().body(articleResponse);
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<ArticleAddResponse> addArticle(ArticleAddRequest dto) {
+        ArticleAddResponse articleResponse = articleService.addArticle(dto);
+        return ResponseEntity.ok().body(articleResponse);
+    }
 }
