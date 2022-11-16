@@ -1,5 +1,6 @@
 package com.rererepeatbbs.domain.entity;
 
+import com.rererepeatbbs.domain.dto.ArticleResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,9 @@ public class Article {
     private Long id;
     private String title;
     private String content;
+
+    public static ArticleResponse of(Article article){
+        return new ArticleResponse(article.getId(), article.title, article.getContent());
+    }
 
 }
