@@ -2,6 +2,7 @@ package com.rererepeatbbs.domain.entity;
 
 import com.rererepeatbbs.domain.dto.ArticleResponse;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Builder
 @Entity
 @Getter
 @AllArgsConstructor
