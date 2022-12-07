@@ -61,7 +61,7 @@ public class HospitalController {
     }*/
 
     @GetMapping("")
-    public String index2(@RequestParam String keyword, Pageable pageable, Model model) {
+    public String index2(@RequestParam(required = false) String keyword, Pageable pageable, Model model) {
         log.info("keyword:{}", keyword);
         Page<Hospital> hospitals = hospitalService.findByRoadNameAddressContaining(keyword, pageable);
         model.addAttribute("hospitals", hospitals);

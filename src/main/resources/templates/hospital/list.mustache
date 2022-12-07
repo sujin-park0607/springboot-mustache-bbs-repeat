@@ -1,10 +1,15 @@
 {{> layouts/header}}
 <table class="table">
+    <form method="get" action="/hospital">
+        <input type="text" name="keyword">
+        <button>제출</button>
+    </form>
     <thead>
     <tr>
         <th scope="col">Id</th>
         <th scope="col">hospital_name</th>
         <th scope="col">business_type_name</th>
+        <th scope="col">road_name_address</th>
     </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -13,6 +18,7 @@
             <th>{{id}}</th>
             <td><a href="/hospital/{{id}}">{{hospitalName}}</a></td>
             <td>{{businessTypeName}}</td>
+            <td>{{roadNameAddress}}</td>
         </tr>
     {{/hospitals}}
     </tbody>

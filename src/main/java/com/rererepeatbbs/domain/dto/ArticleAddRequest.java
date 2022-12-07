@@ -2,6 +2,7 @@ package com.rererepeatbbs.domain.dto;
 
 import com.rererepeatbbs.domain.entity.Article;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @AllArgsConstructor
@@ -15,6 +16,5 @@ public class ArticleAddRequest {
                 .title(this.getTitle())
                 .content(this.getContent())
                 .build();
-
     }
 }

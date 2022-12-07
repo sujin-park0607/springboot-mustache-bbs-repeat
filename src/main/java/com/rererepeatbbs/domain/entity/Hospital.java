@@ -3,15 +3,16 @@ package com.rererepeatbbs.domain.entity;
 import com.rererepeatbbs.domain.dto.HospitalResponse;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Table(name = "nation_wide_hospitals")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Hospital {
     @Id
     private Integer id;
@@ -60,12 +61,14 @@ public class Hospital {
     @Column(name = "total_area_size")
     private Float totalAreaSize;
 
+    @OneToMany(mappedBy = "hospital", fetch = FetchType.LAZY)
+    private List<Review> reviews;
+
     public static HospitalResponse of(Hospital hospital) {
         return new HospitalResponse(hospital.getId(),
                 hospital.getRoadNameAddress(), hospital.getHospitalName(),
                 hospital.getPatientRoomCount(), hospital.getTotalNumberOfBeds(), hospital.getBusinessTypeName(),
                 hospital.getTotalAreaSize());
     }
-
 
 }

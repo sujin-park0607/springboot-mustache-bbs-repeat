@@ -1,11 +1,10 @@
 package com.rererepeatbbs.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rererepeatbbs.domain.dto.ArticleAddRequest;
 import com.rererepeatbbs.domain.dto.ArticleAddResponse;
+import com.rererepeatbbs.domain.dto.ArticleDto;
 import com.rererepeatbbs.domain.dto.ArticleResponse;
-import com.rererepeatbbs.domain.dto.HospitalResponse;
 import com.rererepeatbbs.service.ArticleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -69,7 +67,7 @@ class ArticleRestControllerTest {
     void add() throws Exception {
         ArticleAddRequest dto = new ArticleAddRequest("gg", "gg");
 
-        given(articleService.addArticle(any())).willReturn(new ArticleAddResponse(2L, dto.getTitle(), dto.getContent()));
+        given(articleService.addArticle(any())).willReturn(new ArticleAddResponse(1L, dto.getTitle(), dto.getContent()));
         //objectMapper
         String url = "/api/v1/articles/add";
         mockMvc.perform(post(url)
@@ -78,7 +76,7 @@ class ArticleRestControllerTest {
                 ).andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.title").exists())
-                .andExpect(jsonPath("$.title").value("ggg"))
+                .andExpect(jsonPath("$.title").value("gg"))
                 .andExpect(jsonPath("$.content").exists())
                 .andDo(print());
     }
