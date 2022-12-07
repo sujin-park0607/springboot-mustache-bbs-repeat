@@ -2,7 +2,7 @@
 mustache 게시판 만들기 복습
 
 ## Entity Diagram
-![image](https://user-images.githubusercontent.com/101695482/206072740-f458b7e4-2a66-4096-9553-2a25663a01e5.png)
+![image](https://user-images.githubusercontent.com/101695482/206090899-46c1767c-7354-437c-9280-c514cbb8f97e.png)
 
 ## API
 | HTTP | URL                           |        설명        |
