@@ -1,6 +1,7 @@
 package com.rererepeatbbs.configuration;
 
 import com.rererepeatbbs.service.UserService;
+import com.rererepeatbbs.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
