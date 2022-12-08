@@ -45,7 +45,7 @@ public class UserService {
     public String login(UserRequest dto){
         User user = userRepository.findByUserName(dto.getUserName())
                 .orElseThrow(
-                        () -> new UserAppException(ErrorCode.NOT_FOUND, String.format("%s는 회원이 아닙니다.", dto.getUserName())));
+                        () -> new UserAppException(ErrorCode.NOT_FOUNDED, String.format("%s는 회원이 아닙니다.", dto.getUserName())));
         if (!encoder.matches(dto.getPassword(), user.getPassword())) {
             throw new UserAppException(ErrorCode.INVALID_PASSWORD, String.format("userName 또는 password가 일치하지 않습니다."));
         }
