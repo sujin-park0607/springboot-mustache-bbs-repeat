@@ -35,7 +35,7 @@ public class VisitController {
     }
 
     @GetMapping("/users/{id}")
-    public Response<List<VisitResponse>> getUserVisitInfo(@PathVariable Long id){
+    public Response<String> getUserVisitInfo(@PathVariable Long id){
         return Response.success("");
     }
 

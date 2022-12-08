@@ -1,11 +1,16 @@
 package com.rererepeatbbs.domain.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "product") // 생략 가능
-public class Product {
+public class Product extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
